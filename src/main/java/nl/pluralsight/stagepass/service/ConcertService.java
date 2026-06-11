@@ -43,7 +43,9 @@ public class ConcertService {
             return concertRepository.save(existing);
         });
     }
-
+    public List<Concert> getUpcomingConcerts(){
+        return concertRepository.findByDateAfterOrderByDateAsc(LocalDate.now());
+    }
     public boolean deleteConcert(Long id) {
         if (concertRepository.existsById(id)) {
             concertRepository.deleteById(id);
