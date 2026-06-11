@@ -1,6 +1,7 @@
 package nl.pluralsight.stagepass.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
 import nl.pluralsight.stagepass.exception.InsufficientSeatsException;
 
 import java.math.BigDecimal;
@@ -12,9 +13,9 @@ public class Concert {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+//    @NotBlank
     private String title;
-
+//    @FutureOrPresent
     private LocalDate date;
 
     @ManyToOne
@@ -24,11 +25,11 @@ public class Concert {
     @ManyToOne
     @JoinColumn(name = "venue_id")
     private Venue venue;
-
+//    @Positive
     private int totalSeats;
 
     private int availableSeats;
-
+//    @NotNull @DecimalMin("0.01")
     private BigDecimal ticketPrice;
 
     public Concert() {}

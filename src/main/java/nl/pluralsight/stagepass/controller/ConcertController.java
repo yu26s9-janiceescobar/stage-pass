@@ -44,7 +44,7 @@ public class ConcertController {
     }
 
     @PostMapping
-    public ResponseEntity<Concert> createConcert(@RequestBody Concert concert) {
+    public ResponseEntity<Concert> createConcert(@Valid @RequestBody Concert concert) {
         Concert created = concertService.createConcert(concert);
         return ResponseEntity.ok(created);
     }
@@ -54,7 +54,7 @@ public class ConcertController {
         return ResponseEntity.ok(ConcertSummary.from(concert));
     }
     @PutMapping("/{id}")
-    public ResponseEntity<Concert> updateConcert(@PathVariable Long id, @RequestBody Concert concert) {
+    public ResponseEntity<Concert> updateConcert(@PathVariable Long id, @Valid @RequestBody Concert concert) {
         return concertService.updateConcert(id, concert)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());

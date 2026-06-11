@@ -40,7 +40,6 @@ public class BookingService {
     public Booking createBooking(Booking booking) {
         Concert concert = concertRepository.findById(booking.getConcert().getId())
                 .orElseThrow(() -> new ConcertNotFoundException("Concert not found"));
-
         if (booking.getNumberOfTickets() <= 0) {
             throw new IllegalArgumentException("Must book at least one seat");
         }
