@@ -28,7 +28,9 @@ public class ConcertService {
     public Concert createConcert(Concert concert) {
         return concertRepository.save(concert);
     }
-
+    public List<Concert> getConcertsByArtist(Long artistId){
+        return concertRepository.findByArtistId(artistId);
+    }
     public Optional<Concert> updateConcert(Long id, Concert updatedConcert) {
         return concertRepository.findById(id).map(existing -> {
             existing.setTitle(updatedConcert.getTitle());
