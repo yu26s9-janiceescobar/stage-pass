@@ -1,5 +1,6 @@
 package nl.pluralsight.stagepass.service;
 
+import nl.pluralsight.stagepass.exception.ConcertNotFoundException;
 import nl.pluralsight.stagepass.model.Concert;
 import nl.pluralsight.stagepass.repository.ConcertRepository;
 import org.springframework.stereotype.Service;
@@ -21,8 +22,9 @@ public class ConcertService {
         return concertRepository.findAll();
     }
 
-    public Optional<Concert> getConcertById(Long id) {
-        return concertRepository.findById(id);
+    public Concert getConcertById(Long id) {
+        return concertRepository.findById(id)
+                .orElseThrow(() -> new ConcertNotFoundException("Concert not found"));
     }
 
     public Concert createConcert(Concert concert) {

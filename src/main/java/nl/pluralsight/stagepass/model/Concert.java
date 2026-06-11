@@ -45,7 +45,7 @@ public class Concert {
         this.ticketPrice = ticketPrice;
     }
 
-    public Long getId() { return id; }
+    public Long getId() {return id;}
     public void setId(Long id) { this.id = id; }
 
     public String getTitle() { return title; }

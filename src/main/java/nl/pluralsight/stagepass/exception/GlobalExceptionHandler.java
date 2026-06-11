@@ -15,4 +15,9 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.CONFLICT)
                 .body(Map.of("message", ex.getMessage()));
     }
+    @ExceptionHandler(ConcertNotFoundException.class)
+    public ResponseEntity<Map<String, String>> handleConcertNotFound(ConcertNotFoundException ex){
+        return ResponseEntity.status(HttpStatus.CONFLICT)
+                .body(Map.of("message", ex.getMessage()));
+    }
 }
