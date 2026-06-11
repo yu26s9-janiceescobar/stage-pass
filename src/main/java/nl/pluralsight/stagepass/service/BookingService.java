@@ -47,6 +47,8 @@ public class BookingService {
         // Set booking date and concert reference
         booking.setBookingDate(LocalDate.now());
         booking.setConcert(concert);
+        int availableSeats = concert.getAvailableSeats();
+        concert.setAvailableSeats(availableSeats - booking.getNumberOfTickets());
 
         return bookingRepository.save(booking);
     }
