@@ -1,5 +1,6 @@
 package nl.pluralsight.stagepass.service;
 
+import nl.pluralsight.stagepass.exception.ConcertNotFoundException;
 import nl.pluralsight.stagepass.exception.InsufficientSeatsException;
 import nl.pluralsight.stagepass.model.Booking;
 import nl.pluralsight.stagepass.model.Concert;
@@ -35,11 +36,10 @@ public class BookingService {
     public List<Booking> getBookingsByConcert(Long concertId) {
         return bookingRepository.findByConcertId(concertId);
     }
-
     @Transactional
     public Booking createBooking(Booking booking) {
         Concert concert = concertRepository.findById(booking.getConcert().getId())
-                .orElseThrow(() -> new RuntimeException("Concert not found"));
+                .orElseThrow(() -> new ConcertNotFoundException("Concert not found"));
 
         if (booking.getNumberOfTickets() <= 0) {
             throw new IllegalArgumentException("Must book at least one seat");

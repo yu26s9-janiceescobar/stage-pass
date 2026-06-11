@@ -9,6 +9,7 @@ import nl.pluralsight.stagepass.service.ConcertService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @RestController
@@ -47,10 +48,11 @@ public class ConcertController {
         Concert created = concertService.createConcert(concert);
         return ResponseEntity.ok(created);
     }
-//    @GetMapping("/{id}/summary")
-//    public ResponseEntity<ConcertSummary> getConcertSummary(@PathVariable Long id){
-//        Concert concert =
-//    }
+    @GetMapping("/{id}/summary")
+    public ResponseEntity<ConcertSummary> getConcertSummary(@PathVariable Long id){
+        Concert concert = concertService.getConcertById(id);
+        return ResponseEntity.ok(ConcertSummary.from(concert));
+    }
     @PutMapping("/{id}")
     public ResponseEntity<Concert> updateConcert(@PathVariable Long id, @RequestBody Concert concert) {
         return concertService.updateConcert(id, concert)

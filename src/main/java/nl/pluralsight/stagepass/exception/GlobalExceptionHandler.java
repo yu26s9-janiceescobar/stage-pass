@@ -1,6 +1,7 @@
 package nl.pluralsight.stagepass.exception;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -17,7 +18,7 @@ public class GlobalExceptionHandler {
     }
     @ExceptionHandler(ConcertNotFoundException.class)
     public ResponseEntity<Map<String, String>> handleConcertNotFound(ConcertNotFoundException ex){
-        return ResponseEntity.status(HttpStatus.CONFLICT)
+        return ResponseEntity.status(HttpStatus.NOT_FOUND)
                 .body(Map.of("message", ex.getMessage()));
     }
 }

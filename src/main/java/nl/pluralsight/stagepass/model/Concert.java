@@ -72,6 +72,9 @@ public class Concert {
         }
         availableSeats -= numberOfSeats;
     }
+    public int getBookedSeats(){
+        return totalSeats - availableSeats;
+    }
 
     public BigDecimal getTicketPrice() { return ticketPrice; }
     public void setTicketPrice(BigDecimal ticketPrice) { this.ticketPrice = ticketPrice; }
