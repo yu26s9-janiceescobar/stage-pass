@@ -1,6 +1,7 @@
 package nl.pluralsight.stagepass.controller;
 
 import jakarta.validation.Valid;
+import nl.pluralsight.stagepass.exception.InsufficientSeatsException;
 import nl.pluralsight.stagepass.model.Booking;
 import nl.pluralsight.stagepass.service.BookingService;
 import org.springframework.http.HttpStatus;

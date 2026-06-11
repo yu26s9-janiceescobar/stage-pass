@@ -1,6 +1,7 @@
 package nl.pluralsight.stagepass.model;
 
 import jakarta.persistence.*;
+import nl.pluralsight.stagepass.exception.InsufficientSeatsException;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -64,6 +65,13 @@ public class Concert {
 
     public int getAvailableSeats() { return availableSeats; }
     public void setAvailableSeats(int availableSeats) { this.availableSeats = availableSeats; }
+
+    public void bookSeats(int numberOfSeats){
+        if(numberOfSeats > availableSeats){
+            throw new InsufficientSeatsException("Not enough seats available");
+        }
+        availableSeats -= numberOfSeats;
+    }
 
     public BigDecimal getTicketPrice() { return ticketPrice; }
     public void setTicketPrice(BigDecimal ticketPrice) { this.ticketPrice = ticketPrice; }
