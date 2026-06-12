@@ -31,13 +31,13 @@ public class VenueController {
     }
 
     @PostMapping
-    public ResponseEntity<Venue> createVenue(@Valid @RequestBody Venue venue) {
+    public ResponseEntity<Venue> createVenue(@RequestBody Venue venue) {
         Venue created = venueService.createVenue(venue);
         return ResponseEntity.ok(created);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Venue> updateVenue(@PathVariable Long id, @Valid @RequestBody Venue venue) {
+    public ResponseEntity<Venue> updateVenue(@PathVariable Long id,@RequestBody Venue venue) {
         return venueService.updateVenue(id, venue)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());

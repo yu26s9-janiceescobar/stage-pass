@@ -13,11 +13,11 @@ public class Booking {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank
+    @NotBlank(message = "Customer name cannot be blank.")
     private String customerName;
 
-    @NotBlank
-    @Email
+    @NotBlank(message = "Email cannot be blank.")
+    @Email(message = "Must enter a valid email.")
     private String customerEmail;
 
     @ManyToOne
@@ -29,7 +29,8 @@ public class Booking {
     private int numberOfTickets;
 
     private BigDecimal totalPrice;
-
+    @NotBlank(message = "Booking date cannot be blank.")
+    @FutureOrPresent(message = "Date cannot be in the past.")
     private LocalDate bookingDate;
 
     public Booking() {}
